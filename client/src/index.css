@@ -22,3 +22,9 @@ input.yellow-input:focus {
   font-weight: 900;
   cursor: pointer;
 }
+
+.searchFrom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

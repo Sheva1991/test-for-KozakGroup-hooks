@@ -58,6 +58,32 @@ router.delete('/delete/:id', auth, async (req, res) => {
 
 })
 
+router.get('/search', auth, async (req, res) => {
+    try {
+        // console.log(req.query.search)
+        // const employees = await Employee.find({}, "fullname, gender, contacts, dateOfCreate, salary, position", function (err, docs) {
+        //     if (err) console.log(err);
+        //     console.log(docs);
+        // });
+        let employee = null
+        await Employee.find({
+            $or:
+                [{ fullname: { $regex: `${req.query.search}`, $options: "i" } },
+                { gender: { $regex: `${req.query.search}`, $options: "i" } },
+                { contacts: { $regex: `${req.query.search}`, $options: "i" } },
+                { dateOfCreate: { $regex: `${req.query.search}`, $options: "i" } },
+                { salary: { $regex: `${req.query.search}`, $options: "i" } },
+                { position: { $regex: `${req.query.search}`, $options: "i" } }]
+        }, function (err, docs) {
+            employee = docs
+        });
+        res.status(201).json({ employee })
+
+    } catch (e) {
+        res.status(500).json({ message: "Что-то пошло не так, попробуйте снова" })
+    }
+})
+
 router.get('/', auth, paginatedData(Employee), async (req, res) => {
     try {
 

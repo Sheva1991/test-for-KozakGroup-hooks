@@ -6,6 +6,7 @@ import { useCallback } from 'react'
 import { useEffect } from 'react'
 import { Loader } from '../components/Loader'
 import { EmployeeList } from '../components/EmployeeList'
+import { SearchForm } from '../components/SearchForm'
 
 export const EmployeesPage = () => {
     const [employees, setEmployees] = useState([])
@@ -49,6 +50,7 @@ export const EmployeesPage = () => {
 
     return (
         <>
+            <SearchForm setTotalItemsCount={setTotalItemsCount} setEmployees={setEmployees} request={request} token={token} />
             {!loading && <EmployeeList employees={employees} fetchEmployees={fetchEmployees} currentPage={currentPage} />}
             <ul className="pagination">
                 {portionNumber > 1 &&
