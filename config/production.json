@@ -1,0 +1,7 @@
+{
+    "port": 5000,
+    "jwtSecret": "test_kozak",
+    "mongoURL": "mongodb+srv://neval9iwka:282381@cluster0-aw9nx.azure.mongodb.net/app?retryWrites=true&w=majority",
+    "baseURL": "http://localhost:5000"
+
+}
